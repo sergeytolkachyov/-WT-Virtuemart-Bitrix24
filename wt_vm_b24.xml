@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<extension type="plugin" version="3.0" method="upgrade" group="system">
+    <name>System - WT Virtuemart Bitrix24</name>
+    <author>Sergey Tolkachyov</author>
+    <authorEmail>info@web-tolk.ru</authorEmail>
+    <authorUrl>https://web-tolk.ru/</authorUrl>
+	<creationDate>13/03/2020</creationDate>
+    <copyright>Sergey Tolkachyov</copyright>
+    <license>GNU GPL 3.0</license>
+    <version>1.0.0</version>
+    <description>PLG_WT_VM_B24_DESC</description>
+    <files>
+        <filename plugin="wt_vm_b24">wt_vm_b24.php</filename>
+        <filename>index.html</filename>
+        <folder>img</folder>
+        <folder>language</folder>
+        <folder>lib</folder>
+        <folder>subform</folder>
+		<folder>js</folder>
+    </files>
+	<languages folder="language" client="administrator">
+
+        <language tag="en-GB">en-GB/en-GB.plg_system_wt_vm_b24.ini</language>
+        <language tag="ru-RU">ru-RU/ru-RU.plg_system_wt_vm_b24.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_system_wt_vm_b24.sys.ini</language>
+        <language tag="ru-RU">ru-RU/ru-RU.plg_system_wt_vm_b24.sys.ini</language>
+    </languages>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+			<field type="spacer"
+					   label="PLG_WT_VM_B24_DESC2"/>
+                <field type="text" name="crm_host"
+					label="PLG_WT_VM_B24_CRM_HOST" 
+					default="domain.bitrix24.ru" 
+					description="PLG_WT_VM_B24_CRM_HOST_DESC" />
+
+				<field type="password"
+					name="crm_webhook_secret" 
+					label="PLG_WT_VM_B24_WEBHOOK_SECRET_CODE" 
+					default="" 
+					description="PLG_WT_VM_B24_WEBHOOK_SECRET_CODE_DESC"
+                 />
+                <field type="text" 
+					name="crm_assigned" 
+					label="PLG_WT_VM_B24_WEBHOOK_ASSIGNED_ID" 
+					default="1" 
+					description="PLG_WT_VM_B24_WEBHOOK_ASSIGNED_ID_DESC" 
+					/>
+			<field type="text" 
+					name="order_name_prefix" 
+					label="PLG_WT_VM_B24_ORDER_NAME_PREFIX" 
+					description="PLG_WT_VM_B24_ORDER_NAME_PREFIX_DESC" />
+			<field type="radio" 
+				name="lead_vs_deal" 
+				label="PLG_WT_VM_B24_LEAD_VS_DEAL" 
+				description="PLG_WT_VM_B24_LEAD_VS_DEAL_DESC" 
+				default="lead" class="btn-group btn-group-yesno"
+				disabled="disabled">
+                    <option value="lead">PLG_WT_VM_B24_LEAD_VS_DEAL_L</option>
+                    <option value="deal">PLG_WT_VM_B24_LEAD_VS_DEAL_D</option>
+                </field>
+                <field type="radio"
+                       name="debug"
+                       label="PLG_WT_VM_B24_DEBUG"
+                       description="PLG_WT_VM_B24_DEBUG_DESC"
+                       default="0" class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+            </fieldset>
+            <fieldset name="PLG_WT_VM_B24_LEAD_SETTINGS">
+                <field type="spacer" label="PLG_WT_VM_B24_LEAD_SUBFORM_DESC"/>
+                <field name="fields"
+                       label="PLG_WT_VM_B24_LEAD_SUBFORM"
+                       type="subform"
+                       layout="joomla.form.field.subform.repeatable-table"
+                       formsource="/plugins/system/wt_vm_b24/subform/fields.xml"
+                       multiple="true"
+                       buttons="add,remove"
+                />
+
+                <field type="radio"
+                       name="lead_source"
+                       label="PLG_WT_VM_B24_B24_LEAD_SOURCE_ID"
+                       default="WEB" class="btn-group btn-group-yesno"
+                >
+                    <option value="WEB">PLG_WT_VM_B24_B24_LEAD_SOURCE_ID_WEB</option>
+                    <option value="STORE">PLG_WT_VM_B24_B24_LEAD_SOURCE_ID_STORE</option>
+                </field>
+                <field name="source_description"  type="textarea"  label="PLG_WT_VM_B24_B24_LEAD_SOURCE_DESCRIPTION"/>
+            </fieldset>
+            <fieldset name="PLG_WT_VM_B24_PRODUCT_SETTINGS">
+<field type="spacer" label="PLG_WT_VM_B24_PRODUCT_SETTINGS_PRODUCTS_VS_PRODUCT_ROWS"/>
+                <field type="spacer" label="PLG_WT_VM_B24_B24_LEAD_PRODUCT_ROWS_ALERT"/>
+                <field type="radio"
+                       name="product_link"
+                       label="PLG_WT_VM_B24_B24_LEAD_PRODUCT_LINK"
+                       description="PLG_WT_VM_B24_B24_LEAD_PRODUCT_LINK_DESC"
+                       default="1" class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+
+                <field type="radio"
+                       name="product_image"
+                       label="PLG_WT_VM_B24_B24_LEAD_PRODUCT_IMG"
+                       description="PLG_WT_VM_B24_B24_LEAD_PRODUCT_IMG_DESC"
+                       default="0" class="btn-group btn-group-yesno"
+                >
+                    <option value="0">JNO</option>
+                    <option value="1">PLG_WT_VM_B24_B24_LEAD_PRODUCT_IMG_IN_COMMENT</option>
+                </field>
+                <field type="radio"
+                       name="product_sku"
+                       label="PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_SKU"
+                       default="0" class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field type="radio"
+                       name="product_weight"
+                       label="PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_WEIGHT"
+                       default="0" class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field type="radio"
+                       name="product_gtin"
+                       label="PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_GTIN"
+                       default="0" class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field type="radio"
+                       name="product_mpn"
+                       label="PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_MPN"
+                       default="0" class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+
+
+
+
+                <field type="radio"
+                       name="product_weight"
+                       label="PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_WEIGHT"
+                       default="0" class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field type="radio"
+                       name="product_lenght"
+                       label="PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_LENGTH"
+                       default="0" class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field type="radio"
+                       name="product_widht"
+                       label="PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_WIDTH"
+                       default="0" class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field type="radio"
+                       name="product_height"
+                       label="PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_HEIGHT"
+                       default="0" class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field type="radio"
+                       name="product_cf_cart_attr_desc"
+                       label="PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_CF_CART_ATTR"
+                       description="PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_CF_CART_ATTR_DESC"
+                       default="1" class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </fieldset>
+        </fields>
+    </config>
+    <updateservers>
+        <server type="extension" name="WebTolkUpdateServer"><![CDATA[	https://web-tolk.ru/component/swjprojects/jupdate.html?element=wt_vm_b24 ]]></server>
+    </updateservers>
+</extension>
