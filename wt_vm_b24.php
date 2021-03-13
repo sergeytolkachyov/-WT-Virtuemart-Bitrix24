@@ -11,7 +11,7 @@ defined( '_JEXEC' ) or die;
  * @license     GNU/GPL http://www.gnu.org/licenses/gpl-2.0.html
  * @since 1.0
  */
-jimport('joomla.plugin.plugin');
+
 class plgSystemWt_vm_b24 extends JPlugin
 {
 	/**
@@ -147,7 +147,7 @@ class plgSystemWt_vm_b24 extends JPlugin
                $b24_comment .= "<img src='" .JUri::root(). $this->getProductImage($items->virtuemart_media_id[0]). "' width='150px'/><br/>";
            }
            if($this->params->get('product_link') == 1) {
-               $b24_comment .= "<a href='" . SEFLink(JURI::root().$items->canonical) . "'/>" . $items->product_name . "</a><br/>";
+               $b24_comment .= "<a href='" . substr(JURI::root(),0,-1) . JRoute::_($items->link) . "'/>" . $items->product_name . "</a><br/>";
            }else {
                $b24_comment .= $items->product_name."<br/>";
            }
@@ -177,7 +177,7 @@ class plgSystemWt_vm_b24 extends JPlugin
 	           /*
 	            * Virtuemart Custom fields - cart attributes
 	            */
-				if($this->params->get("product_cf_cart_attr_desc") == 1){
+				if($this->params->get("product_cf_cart_attr_desc") == 1 && !empty($items->product_attribute)){
 					$product_attributes = json_decode($items->product_attribute);
 
 					foreach ($product_attributes as $attr => $value){
@@ -244,7 +244,7 @@ class plgSystemWt_vm_b24 extends JPlugin
              print_r($resultBitrix24);
             echo "</pre>";
             echo"<pre><h3>Virtuemart order array</h3><br/>";
-            print_r($order);
+            print_r($orderDetails);
             echo "</pre>";
 
         }// if debug

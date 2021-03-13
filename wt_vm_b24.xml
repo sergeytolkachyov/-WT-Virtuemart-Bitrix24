@@ -4,19 +4,21 @@
     <author>Sergey Tolkachyov</author>
     <authorEmail>info@web-tolk.ru</authorEmail>
     <authorUrl>https://web-tolk.ru/</authorUrl>
-	<creationDate>13/03/2020</creationDate>
+	<creationDate>13/03/2021</creationDate>
     <copyright>Sergey Tolkachyov</copyright>
     <license>GNU GPL 3.0</license>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <description>PLG_WT_VM_B24_DESC</description>
+	<scriptfile>script.php</scriptfile>
     <files>
         <filename plugin="wt_vm_b24">wt_vm_b24.php</filename>
         <filename>index.html</filename>
+        <folder>fields</folder>
         <folder>img</folder>
+        <folder>js</folder>
         <folder>language</folder>
         <folder>lib</folder>
         <folder>subform</folder>
-		<folder>js</folder>
     </files>
 	<languages folder="language" client="administrator">
 
@@ -28,8 +30,7 @@
     <config>
         <fields name="params">
             <fieldset name="basic">
-			<field type="spacer"
-					   label="PLG_WT_VM_B24_DESC2"/>
+            <field addfieldpath="plugins/system/wt_vm_b24/fields" type="wtvmb24plugininfo" name="wtvmb24plugininfo"/>
                 <field type="text" name="crm_host"
 					label="PLG_WT_VM_B24_CRM_HOST" 
 					default="domain.bitrix24.ru" 
