@@ -1,5 +1,7 @@
 <?php
 // No direct access
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 defined( '_JEXEC' ) or die;
 
 /**
@@ -96,15 +98,23 @@ class plgSystemWt_vm_b24 extends JPlugin
 		                      if($value == "virtuemart_country_id"){//Получаем название страны
 
 			                        $store_field .= $this->getCountryName($order->$value)." ";
+
 		                      }elseif($value == "virtuemart_state_id"){//Получаем название региона
+
 			                       $store_field .= $this->getStateName($order->$value)." ";
 
 		                      }elseif($value == "virtuemart_shipmentmethod_id"){//название способа доставки
+
 			                        $store_field .= $this->getShippingMethodName($order->$value,$order->order_language)." ";
+
 		                      }elseif($value == "virtuemart_paymentmethod_id"){//название способа оплаты
+
 			                       $store_field .= $this->getPaymentMethodName($order->$value,$order->order_language)." ";
+
 		                      }else {
+
 			                      $store_field .= $order->$value . " ";
+
 		                      }
 	                      }
                     }
@@ -135,7 +145,7 @@ class plgSystemWt_vm_b24 extends JPlugin
         $qr["fields"]["SOURCE_ID"] = $this->params->get('lead_source');
         $qr["fields"]["SOURCE_DESCRIPTION"] = $this->params->get('source_description');
 	    $product_rows = array();
-        $b24_comment="<br/>";
+        $b24_comment="<br/><hr/><br/>";
        $a=0;
        foreach($orderItems as $items){
            $product_rows[$a]["PRODUCT_NAME"] = $items->order_item_name;
@@ -152,25 +162,25 @@ class plgSystemWt_vm_b24 extends JPlugin
                $b24_comment .= $items->product_name."<br/>";
            }
            if($this->params->get('product_sku') == 1) {
-               $b24_comment .= JText::_("PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_SKU").": ".$items->product_sku."<br/>";
+               $b24_comment .= Text::_("PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_SKU").": ".$items->product_sku."<br/>";
            }
 	       if($this->params->get('product_gtin') == 1) {
-		       $b24_comment .= JText::_("PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_GTIN").": ".$items->product_gtin."<br/>";
+		       $b24_comment .= Text::_("PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_GTIN").": ".$items->product_gtin."<br/>";
 	       }
 	       if($this->params->get('product_mpn') == 1) {
-		       $b24_comment .= JText::_("PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_MPN").": ".$items->product_mpn."<br/>";
+		       $b24_comment .= Text::_("PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_MPN").": ".$items->product_mpn."<br/>";
 	       }
            if($this->params->get('product_weight') == 1) {
-               $b24_comment .= JText::_("PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_WEIGHT").": ".$items->product_weight."<br/>";
+               $b24_comment .= Text::_("PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_WEIGHT").": ".$items->product_weight."<br/>";
            }
 	       if($this->params->get('product_length') == 1) {
-		       $b24_comment .= JText::_("PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_LENGTH").": ".$items->product_length."<br/>";
+		       $b24_comment .= Text::_("PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_LENGTH").": ".$items->product_length."<br/>";
 	       }
 	       if($this->params->get('product_width') == 1) {
-		       $b24_comment .= JText::_("PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_WIDTH").": ".$items->product_width."<br/>";
+		       $b24_comment .= Text::_("PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_WIDTH").": ".$items->product_width."<br/>";
 	       }
 	       if($this->params->get('product_height') == 1) {
-		       $b24_comment .= JText::_("PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_HEIGHT").": ".$items->product_height."<br/>";
+		       $b24_comment .= Text::_("PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_HEIGHT").": ".$items->product_height."<br/>";
 	       }
 
 
@@ -196,7 +206,7 @@ class plgSystemWt_vm_b24 extends JPlugin
         $b24_comment .= "<a href='".JURI::root()."administrator?option=com_virtuemart&view=orders&task=edit&virtuemart_order_id=".$order->virtuemart_order_id."'>See this order in Virtuemart</a>";
         $qr["fields"]["COMMENTS"] .= $b24_comment;
 
-		$getCookie = JFactory::getApplication()->input->cookie;
+		$getCookie = Factory::getApplication()->input->cookie;
         $utms = array(
             'utm_source',
             'utm_medium',
@@ -261,7 +271,7 @@ class plgSystemWt_vm_b24 extends JPlugin
      * @since version 1.0
      */
     private function getProductImage ($virtuemart_media_id){
-        $db = JFactory::getDBO();
+        $db = Factory::getDBO();
         $query = $db->getQuery(true);
         $query->select($db->quoteName('file_url'))
             ->from($db->quoteName('#__virtuemart_medias'))
@@ -281,9 +291,9 @@ class plgSystemWt_vm_b24 extends JPlugin
      * @since version 1.0
      */
     private function getCountryName ($country_id){
-        $lang = JFactory::getLanguage();
+        $lang = Factory::getLanguage();
         $current_lang = $lang->getTag();
-        $db = JFactory::getDBO();
+        $db = Factory::getDBO();
         $query = $db->getQuery(true);
         $query->select($db->quoteName('country_name'))
             ->from($db->quoteName('#__virtuemart_countries'))
@@ -301,9 +311,9 @@ class plgSystemWt_vm_b24 extends JPlugin
 	 * @since version 1.0
 	 */
 	private function getStateName ($state_id){
-		$lang = JFactory::getLanguage();
+		$lang = Factory::getLanguage();
 		$current_lang = $lang->getTag();
-		$db = JFactory::getDBO();
+		$db = Factory::getDBO();
 		$query = $db->getQuery(true);
 		$query->select($db->quoteName('state_name'))
 			->from($db->quoteName('#__virtuemart_states'))
@@ -324,11 +334,11 @@ class plgSystemWt_vm_b24 extends JPlugin
      */
 
     private function getShippingMethodName ($shipping_method_id,$order_language){
-         $order_language = str_replace("-","_",$order_language);
-		$db = JFactory::getDBO();
+         $order_language = strtolower(str_replace("-","_",$order_language));
+		$db = Factory::getDBO();
         $query = $db->getQuery(true);
         $query->select($db->quoteName('shipment_name'))
-            ->from($db->quoteName('#__virtuemart_shipmentmethods_'.$order_language)) //.$current_lang
+            ->from($db->quoteName('#__virtuemart_shipmentmethods_'.strtolower($order_language))) //.$current_lang
             ->where($db->quoteName('virtuemart_shipmentmethod_id') . ' = '. $db->quote($shipping_method_id));
         $db->setQuery($query);
         $shipping_name = $db->loadAssoc();
@@ -344,8 +354,8 @@ class plgSystemWt_vm_b24 extends JPlugin
      */
     private function getPaymentMethodName ($payment_method_id,$order_language){
 
-        $order_language = str_replace("-","_",$order_language);
-        $db = JFactory::getDBO();
+        $order_language = strtolower(str_replace("-","_",$order_language));
+        $db = Factory::getDBO();
         $query = $db->getQuery(true);
         $query->select($db->quoteName('payment_name'))
             ->from($db->quoteName('#__virtuemart_paymentmethods_'.$order_language))
@@ -360,7 +370,7 @@ class plgSystemWt_vm_b24 extends JPlugin
 function onBeforeCompileHead()
     {
         $load_jquery_coockie_script = $this->params->get('load_jquery_coockie_script');
-        $document = JFactory::getDocument();
+        $document = Factory::getDocument();
         if ($load_jquery_coockie_script == 1) {
             $document->addScript(JURI::root(true) . "plugins/system/wt_vm_b24/js/jquery.coockie.js");
         }

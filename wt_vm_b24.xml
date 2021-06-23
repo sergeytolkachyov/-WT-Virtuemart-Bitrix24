@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
-<extension type="plugin" version="3.0" method="upgrade" group="system">
+<extension type="plugin" version="3.9" method="upgrade" group="system">
     <name>System - WT Virtuemart Bitrix24</name>
     <author>Sergey Tolkachyov</author>
     <authorEmail>info@web-tolk.ru</authorEmail>
     <authorUrl>https://web-tolk.ru/</authorUrl>
-	<creationDate>13/03/2021</creationDate>
+	<creationDate>22/06/2021</creationDate>
     <copyright>Sergey Tolkachyov</copyright>
     <license>GNU GPL 3.0</license>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <description>PLG_WT_VM_B24_DESC</description>
 	<scriptfile>script.php</scriptfile>
     <files>
@@ -21,7 +21,6 @@
         <folder>subform</folder>
     </files>
 	<languages folder="language" client="administrator">
-
         <language tag="en-GB">en-GB/en-GB.plg_system_wt_vm_b24.ini</language>
         <language tag="ru-RU">ru-RU/ru-RU.plg_system_wt_vm_b24.ini</language>
         <language tag="en-GB">en-GB/en-GB.plg_system_wt_vm_b24.sys.ini</language>
