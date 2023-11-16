@@ -43,7 +43,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 	{
 		return [
 			'plgVmConfirmedOrder' => 'plgVmConfirmedOrder',
-			'onAfterDispatch' => 'onAfterDispatch',
+			'onAfterDispatch'     => 'onAfterDispatch',
 		];
 	}
 
@@ -104,7 +104,8 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 		}
 
 		$b24_fields = $this->params->get('fields');
-		$this->prepareDebugInfo('Product fields',$b24_fields);
+		$this->prepareDebugInfo('Product fields', $b24_fields);
+
 		for ($i = 0; $i < count((array) $b24_fields); $i++)
 		{
 			$fields_num  = 'fields' . $i;
@@ -127,41 +128,18 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 				{
 					$store_field = [];
 
-//					$k = 0;
 					foreach ($b24_fields->$fields_num->storefield as $value)
 					{
-//						$email_name = 'n' . $k;
-						if(!empty($order->$value))
+						if (!empty($order->$value))
 						{
-							$store_field['VALUE'] = $order->$value;
+							$store_field['VALUE']      = $order->$value;
 							$store_field['VALUE_TYPE'] = 'WORK';
 
 						}
 
-//						$k++;
 					}
 
 				}
-//				elseif ($b24_field == 'PHONE')
-//				{
-//					$store_field = [];
-//
-//					//$k = 0;
-//					foreach ($b24_fields->$fields_num->storefield as $value)
-//					{
-//						//$phone_name = 'n' . $k;
-//						if(!empty($order->$value))
-//						{
-//							$store_field[] = [
-//								'VALUE'      => $order->$value,
-//								'VALUE_TYPE' => 'WORK'
-//							];
-//						}
-//
-//						//$k++;
-//					}
-//
-//				}
 				else
 				{
 					// TODO: Сделать функцию, а не копировать 2 раза цикл
@@ -230,9 +208,6 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 				}
 			}
 
-//			$qr['fields'][$b24_field] = $store_field;
-
-
 			/**
 			 * Если Сделка или Лид+Контакт
 			 */
@@ -248,9 +223,12 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 					$b24_field == "FAX"
 				)
 				{
-					if($b24_field == "PHONE" || $b24_field == "EMAIL"){
+					if ($b24_field == "PHONE" || $b24_field == "EMAIL")
+					{
 						$contact["fields"][$b24_field][] = $store_field;
-					} else {
+					}
+					else
+					{
 						$contact["fields"][$b24_field] = $store_field;
 					}
 
@@ -668,7 +646,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @return string file_url
 	 *
-	 * @since version 1.0
+	 * @since version 1.0.0
 	 */
 	private function getProductImage($virtuemart_media_id)
 	{
@@ -690,7 +668,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @return string
 	 *
-	 * @since version 1.0
+	 * @since version 1.0.0
 	 */
 	private function getCountryName($country_id)
 	{
@@ -713,7 +691,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @return string
 	 *
-	 * @since version 1.0
+	 * @since version 1.0.0
 	 */
 	private function getStateName($state_id)
 	{
@@ -737,7 +715,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @return string
 	 *
-	 * @since version 1.0
+	 * @since version 1.0.0
 	 */
 
 	private function getShippingMethodName($shipping_method_id, $order_language)
@@ -760,7 +738,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @return string
 	 *
-	 * @since version 1.0
+	 * @since 1.0.0
 	 */
 	private function getPaymentMethodName($payment_method_id, $order_language)
 	{
@@ -783,7 +761,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 	 * @param  $qr        array    Bitrix24 array data
 	 *
 	 * @return            array    Bitrix24 array data with UTMs
-	 * @since    2.4.1
+	 * @since    2.0.0
 	 */
 	private function checkUtms(&$qr): array
 	{
@@ -848,7 +826,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 		}
 		else
 		{
-			$this->saveToLog(print_r($resultBitrix24, true),'ERROR');
+			$this->saveToLog(print_r($resultBitrix24, true), 'ERROR');
 
 			return false;
 		}
@@ -897,7 +875,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 		}
 		else
 		{
-			$this->saveToLog(print_r($resultBitrix24, true),'ERROR');
+			$this->saveToLog(print_r($resultBitrix24, true), 'ERROR');
 
 			return false;
 		}
@@ -983,7 +961,8 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 
 		if (isset($resultBitrix24["result"]["result_error"]) || isset($resultBitrix24["error"]))
 		{
-			$this->saveToLog(print_r($resultBitrix24, true),'ERROR');
+			$this->saveToLog(print_r($resultBitrix24, true), 'ERROR');
+
 			return false;
 		}
 		else
@@ -1021,7 +1000,8 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 
 		if (isset($req_crm_contact_fields["result"]["result_error"]) || isset($resultBitrix24["error"]))
 		{
-			$this->saveToLog(print_r($req_crm_contact_fields, true),'ERROR');
+			$this->saveToLog(print_r($req_crm_contact_fields, true), 'ERROR');
+
 			return false;
 		}
 		else
@@ -1034,10 +1014,12 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 
 	/**
 	 * function for to add Requisites to Contact in Bitrix24
+	 *
 	 * @param $contact_id string a contact id in Bitrix24
 	 * @param $requisites array an array with custromer address data
-	 * @param $contact array an array with contact data. For naming requisites
-	 * @param $debug string to enable debug data from function
+	 * @param $contact    array an array with contact data. For naming requisites
+	 * @param $debug      string to enable debug data from function
+	 *
 	 * @return false boolean If any errors return false
 	 * @return true boolean If Requisites added successfully
 	 */
@@ -1112,7 +1094,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 		// We are not work in Joomla API or CLI ar Admin area
 		if (!$this->getApplication()->isClient('site')) return;
 		$doc = $this->getApplication()->getDocument();
-		$wa = $doc->getWebAssetManager();
+		$wa  = $doc->getWebAssetManager();
 		// Show plugin version in browser console from js-script for UTM
 		$wtb24_plugin_info = simplexml_load_file(JPATH_SITE . "/plugins/system/wt_vm_b24/wt_vm_b24.xml");
 		$doc->addScriptOptions('plg_system_wt_vm_b24', ['version' => (string) $wtb24_plugin_info->version]);

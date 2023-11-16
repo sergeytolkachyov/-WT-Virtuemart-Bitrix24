@@ -105,7 +105,9 @@
                     <option value="0">JNO</option>
                 </field>
             </fieldset>
-            <fieldset name="PLG_WT_VM_B24_LEAD_SETTINGS" description="PLG_WT_VM_B24_LEAD_SUBFORM_DESC">
+            <fieldset name="PLG_WT_VM_B24_CRM_TO_VIRTUEMART_FIELDS"
+                      label="PLG_WT_VM_B24_CRM_TO_VIRTUEMART_FIELDS"
+                      description="PLG_WT_VM_B24_LEAD_SUBFORM_DESC">
                 <field name="fields"
                        label="PLG_WT_VM_B24_LEAD_SUBFORM"
                        type="subform"
