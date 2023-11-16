@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+    <field name="b24fieldtype" type="list"  label="PLG_WT_VM_B24_LEAD_FIELD_TYPE">
+        <option value="standart">PLG_WT_VM_B24_LEAD_FIELD_TYPE_STANDART</option>
+        <option value="custom">PLG_WT_VM_B24_LEAD_FIELD_TYPE_CUSTOM</option>
+    </field>
+
+    <field name="b24fieldstandart" type="list"  label="PLG_WT_VM_B24_LEAD_FIELD_STANDART" showon="b24fieldtype:standart">
+        <option value="TITLE">PLG_WT_VM_B24_LEAD_TITLE</option>
+        <option value="NAME">PLG_WT_VM_B24_LEAD_NAME</option>
+        <option value="SECOND_NAME">PLG_WT_VM_B24_LEAD_SECOND_NAME</option>
+        <option value="LAST_NAME">PLG_WT_VM_B24_LEAD_LAST_NAME</option>
+        <option value="BIRTHDATE">PLG_WT_VM_B24_LEAD_BIRTHDATE</option>
+        <option value="COMPANY_TITLE">PLG_WT_VM_B24_LEAD_COMPANY_TITLE</option>
+
+        <option value="ADDRESS_COUNTRY">PLG_WT_VM_B24_LEAD_ADDRESS_COUNTRY</option>
+        <option value="ADDRESS_POSTAL_CODE">PLG_WT_VM_B24_LEAD_ADDRESS_POSTAL_CODE</option>
+        <option value="ADDRESS_PROVINCE">PLG_WT_VM_B24_LEAD_ADDRESS_PROVINCE</option>
+        <option value="ADDRESS_REGION">PLG_WT_VM_B24_LEAD_ADDRESS_REGION</option>
+        <option value="ADDRESS_CITY">PLG_WT_VM_B24_LEAD_ADDRESS_CITY</option>
+        <option value="ADDRESS">PLG_WT_VM_B24_LEAD_ADDRESS</option>
+        <option value="ADDRESS_2">PLG_WT_VM_B24_LEAD_ADDRESS_2</option>
+        <option value="OPPORTUNITY">PLG_WT_VM_B24_LEAD_OPPORTUNITY</option>
+        <option value="PHONE">PLG_WT_VM_B24_LEAD_PHONE</option>
+        <option value="EMAIL">PLG_WT_VM_B24_LEAD_EMAIL</option>
+        <option value="FAX">PLG_WT_VM_B24_LEAD_FAX</option>
+        <option value="COMMENTS">PLG_WT_VM_B24_LEAD_COMMENTS</option>
+    </field>
+    <field name="b24fieldcustom"  type="text"  label="PLG_WT_VM_B24_LEAD_FIELD_CUSTOM" showon="b24fieldtype:custom"/>
+    <field name="storefield" type="list" multiple="true" label="PLG_WT_VM_B24_LEAD_VIRTUEMART_FIELD">
+        <option value="virtuemart_order_id">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_ID</option>
+        <option value="virtuemart_user_id">PLG_WT_VM_B24_LEAD_VIRTUEMART_USER_ID</option>
+        <option value="virtuemart_vendor_id">PLG_WT_VM_B24_LEAD_VIRTUEMART_VENDOR_ID</option>
+        <option value="order_number">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_NUMBER</option>
+        <option value="customer_number">PLG_WT_VM_B24_LEAD_VIRTUEMART_CUSTOMER_NUMBER</option>
+        <option value="order_pass">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_PASS</option>
+        <option value="order_subtotal">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_SUBTOTAL</option>
+        <option value="order_salesPrice">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_SALES_PRICE</option>
+        <option value="order_discountAmount">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_DISCOUNT_AMOUNT</option>
+        <option value="order_total">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_TOTAL</option>
+
+
+
+        <option value="order_shipment">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_SHIPMENT</option>
+        <option value="order_shipment_with_tax">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_SHIPMENT_WITH_TAX</option>
+        <option value="order_payment">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_PAYMENT</option>
+        <option value="order_payment_tax">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_PAYMENT_TAX</option>
+        <option value="order_payment_with_tax">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_PAYMENT_WITH_TAX</option>
+        <option value="coupon_discount">PLG_WT_VM_B24_LEAD_VIRTUEMART_COUPON_DISCOUNT</option>
+        <option value="coupon_code">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_COUPON_CODE</option>
+        <option value="order_status">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_STATUS</option>
+
+        <option value="virtuemart_shipmentmethod_id">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_VIRTUEMART_SHIPMENTMETHOD_ID</option>
+        <option value="virtuemart_paymentmethod_id">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_VIRTUEMART_PAYMENTMETHOD_ID</option>
+        <option value="delivery_date">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_DELIVERY_DATE</option>
+
+        <option value="customer_note">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_COMMENT</option>
+        <option value="first_name">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_FIRST_NAME</option>
+        <option value="last_name">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_LAST_NAME</option>
+        <option value="middle_name">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_MIDDLE_NAME</option>
+        <option value="company">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_COMPANY</option>
+        <option value="email">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_EMAIL</option>
+
+
+        <option value="virtuemart_country_id">PLG_WT_VM_B24_LEAD_VIRTUEMART_COUNTRY</option>
+        <option value="zip">PLG_WT_VM_B24_LEAD_VIRTUEMART_ZIP</option>
+        <option value="virtuemart_state_id">PLG_WT_VM_B24_LEAD_VIRTUEMART_STATE</option>
+        <option value="city">PLG_WT_VM_B24_LEAD_VIRTUEMART_ADDRESS_CITY</option>
+        <option value="address_1">PLG_WT_VM_B24_LEAD_VIRTUEMART_STREET</option>
+        <option value="address_2">PLG_WT_VM_B24_LEAD_VIRTUEMART_STREET2</option>
+        <option value="phone_1">PLG_WT_VM_B24_LEAD_VIRTUEMART_PHONE</option>
+        <option value="phone_2">PLG_WT_VM_B24_LEAD_VIRTUEMART_MOBILE_PHONE</option>
+        <option value="fax">PLG_WT_VM_B24_LEAD_VIRTUEMART_FAX</option>
+        <option value="order_name">PLG_WT_VM_B24_LEAD_VIRTUEMART_ORDER_NAME</option>
+
+    </field>
+</form>

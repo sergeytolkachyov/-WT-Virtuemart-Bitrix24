@@ -1,34 +1,33 @@
 <?xml version="1.0"?>
-<extension type="plugin" version="3.9" method="upgrade" group="system">
+<extension type="plugin" method="upgrade" group="system">
     <name>System - WT Virtuemart Bitrix24</name>
     <author>Sergey Tolkachyov</author>
     <authorEmail>info@web-tolk.ru</authorEmail>
     <authorUrl>https://web-tolk.ru/</authorUrl>
-	<creationDate>18/08/2021</creationDate>
+	<creationDate>16/11/2023</creationDate>
     <copyright>Sergey Tolkachyov</copyright>
     <license>GNU GPL 3.0</license>
-    <version>1.2.1</version>
+    <version>2.0.0</version>
     <description>PLG_WT_VM_B24_DESC</description>
+    <namespace path="src">Joomla\Plugin\System\Wt_vm_b24</namespace>
 	<scriptfile>script.php</scriptfile>
-    <files>
-        <filename plugin="wt_vm_b24">wt_vm_b24.php</filename>
-        <folder>fields</folder>
-        <folder>img</folder>
+    <media folder="media" destination="plg_system_wt_vm_b24">
         <folder>js</folder>
-        <folder>language</folder>
-        <folder>lib</folder>
-        <folder>subform</folder>
+    </media>
+    <files>
+        <folder plugin="wt_vm_b24">src</folder>
+        <folder>services</folder>
     </files>
 	<languages folder="language" client="administrator">
-        <language tag="en-GB">en-GB/en-GB.plg_system_wt_vm_b24.ini</language>
-        <language tag="ru-RU">ru-RU/ru-RU.plg_system_wt_vm_b24.ini</language>
-        <language tag="en-GB">en-GB/en-GB.plg_system_wt_vm_b24.sys.ini</language>
-        <language tag="ru-RU">ru-RU/ru-RU.plg_system_wt_vm_b24.sys.ini</language>
+        <language tag="en-GB">en-GB/plg_system_wt_vm_b24.ini</language>
+        <language tag="ru-RU">ru-RU/plg_system_wt_vm_b24.ini</language>
+        <language tag="en-GB">en-GB/plg_system_wt_vm_b24.sys.ini</language>
+        <language tag="ru-RU">ru-RU/plg_system_wt_vm_b24.sys.ini</language>
     </languages>
     <config>
         <fields name="params">
             <fieldset name="basic">
-            <field addfieldpath="plugins/system/wt_vm_b24/fields" type="wtvmb24plugininfo" name="wtvmb24plugininfo"/>
+            <field addfieldprefix="Joomla\Plugin\System\Wt_vm_b24\Fields" type="plugininfo" name="plugininfo"/>
                 <field type="text" name="crm_host"
 					label="PLG_WT_VM_B24_CRM_HOST" 
 					default="domain.bitrix24.ru" 
@@ -54,10 +53,48 @@
 				name="lead_vs_deal" 
 				label="PLG_WT_VM_B24_LEAD_VS_DEAL" 
 				description="PLG_WT_VM_B24_LEAD_VS_DEAL_DESC" 
-				default="lead" class="btn-group btn-group-yesno"
-				disabled="disabled">
+				default="lead" class="btn-group btn-group-yesno">
                     <option value="lead">PLG_WT_VM_B24_LEAD_VS_DEAL_L</option>
                     <option value="deal">PLG_WT_VM_B24_LEAD_VS_DEAL_D</option>
+                </field>
+                <field type="radio"
+                       name="create_lead_or_deal_on_specified_stage"
+                       label="PLG_WT_VM_B24_CREATE_LEAD_OR_DEAL_ON_SPECIFIED_STAGE"
+                       default="0" class="btn-group btn-group-yesno"
+                       description="PLG_WT_VM_B24_CREATE_LEAD_OR_DEAL_ON_SPECIFIED_STAGE_DESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field addfieldprefix="Joomla\Plugin\System\Wt_vm_b24\Fields"
+                       type="b24leadstatus"
+                       name="lead_status"
+                       label="PLG_WT_VM_B24_LEAD_STATUS"
+                       showon="create_lead_or_deal_on_specified_stage:1[AND]lead_vs_deal:lead">
+                    <option value=""/>
+                </field>
+                <field addfieldprefix="Joomla\Plugin\System\Wt_vm_b24\Fields"
+                       type="b24ldealcategory"
+                       name="deal_category"
+                       label="PLG_WT_VM_B24_DEAL_CATEGORY"
+                       showon="create_lead_or_deal_on_specified_stage:1[AND]lead_vs_deal:deal">
+                    <option value=""/>
+                </field>
+
+                <field addfieldprefix="Joomla\Plugin\System\Wt_vm_b24\Fields"
+                       type="b24ldealstage"
+                       name="deal_stage"
+                       label="PLG_WT_VM_B24_DEAL_STAGE"
+                       showon="create_lead_or_deal_on_specified_stage:1[AND]lead_vs_deal:deal">
+                    <option value=""/>
+                </field>
+                <field type="radio"
+                       name="create_contact_for_unknown_lead"
+                       label="PLG_WT_VM_B24_CREATE_CONTACT_FOR_UNKNOWN_LEAD"
+                       description="PLG_WT_VM_B24_CREATE_CONTACT_FOR_UNKNOWN_LEAD_DESC"
+                       default="0" class="btn-group btn-group-yesno"
+                       showon="lead_vs_deal:lead">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
                 </field>
                 <field type="radio"
                        name="debug"
@@ -68,15 +105,15 @@
                     <option value="0">JNO</option>
                 </field>
             </fieldset>
-            <fieldset name="PLG_WT_VM_B24_LEAD_SETTINGS">
-                <field type="spacer" label="PLG_WT_VM_B24_LEAD_SUBFORM_DESC"/>
+            <fieldset name="PLG_WT_VM_B24_LEAD_SETTINGS" description="PLG_WT_VM_B24_LEAD_SUBFORM_DESC">
                 <field name="fields"
                        label="PLG_WT_VM_B24_LEAD_SUBFORM"
                        type="subform"
                        layout="joomla.form.field.subform.repeatable-table"
-                       formsource="/plugins/system/wt_vm_b24/subform/fields.xml"
+                       formsource="/plugins/system/wt_vm_b24/src/Subform/fields.xml"
                        multiple="true"
                        buttons="add,remove"
+                       parentclass="stack"
                 />
 
                 <field type="radio"
@@ -89,9 +126,9 @@
                 </field>
                 <field name="source_description"  type="textarea"  label="PLG_WT_VM_B24_B24_LEAD_SOURCE_DESCRIPTION"/>
             </fieldset>
-            <fieldset name="PLG_WT_VM_B24_PRODUCT_SETTINGS">
-<field type="spacer" label="PLG_WT_VM_B24_PRODUCT_SETTINGS_PRODUCTS_VS_PRODUCT_ROWS"/>
-                <field type="spacer" label="PLG_WT_VM_B24_B24_LEAD_PRODUCT_ROWS_ALERT"/>
+            <fieldset name="PLG_WT_VM_B24_PRODUCT_SETTINGS" description="PLG_WT_VM_B24_PRODUCT_SETTINGS_PRODUCTS_VS_PRODUCT_ROWS">
+
+                <field type="note" description="PLG_WT_VM_B24_B24_LEAD_PRODUCT_ROWS_ALERT"/>
                 <field type="radio"
                        name="product_link"
                        label="PLG_WT_VM_B24_B24_LEAD_PRODUCT_LINK"
