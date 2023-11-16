@@ -227,25 +227,11 @@
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </fieldset>
         </fields>
     </config>
     <updateservers>
-        <server type="extension" name="WebTolkUpdateServer"><![CDATA[	https://web-tolk.ru/component/swjprojects/jupdate.html?element=wt_vm_b24 ]]></server>
+        <server type="extension" name="WebTolk  - WT Virtuemart Bitrix 24">https://web-tolk.ru/component/swjprojects/jupdate?element=wt_vm_b24</server>
     </updateservers>
+    <changelogurl>https://web-tolk.ru/jchangelog?element=wt_vm_b24</changelogurl>
 </extension>
