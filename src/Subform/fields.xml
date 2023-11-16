@@ -65,7 +65,7 @@
         <option value="virtuemart_country_id">PLG_WT_VM_B24_LEAD_VIRTUEMART_COUNTRY</option>
         <option value="zip">PLG_WT_VM_B24_LEAD_VIRTUEMART_ZIP</option>
         <option value="virtuemart_state_id">PLG_WT_VM_B24_LEAD_VIRTUEMART_STATE</option>
-        <option value="city">PLG_WT_VM_B24_LEAD_VIRTUEMART_ADDRESS_CITY</option>
+        <option value="city">PLG_WT_VM_B24_LEAD_ADDRESS_CITY</option>
         <option value="address_1">PLG_WT_VM_B24_LEAD_VIRTUEMART_STREET</option>
         <option value="address_2">PLG_WT_VM_B24_LEAD_VIRTUEMART_STREET2</option>
         <option value="phone_1">PLG_WT_VM_B24_LEAD_VIRTUEMART_PHONE</option>

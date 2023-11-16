@@ -56,7 +56,12 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 		$crm_assigned_id = $this->params->get('crm_assigned');
 		if (!empty($crm_host) && !empty($webhook_secret) && !empty($crm_assigned_id))
 		{
-			define('C_REST_WEB_HOOK_URL', 'https://' . $crm_host . '/rest/' . $crm_assigned_id . '/' . $webhook_secret . '/');//url on creat Webhook
+			$b24 = new Uri();
+			$b24->setScheme('https');
+			$b24->setHost($crm_host);
+			$b24->setPath('/rest/' . $crm_assigned_id . '/' . $webhook_secret . '/');
+			echo $b24->toString();
+			define('C_REST_WEB_HOOK_URL', $b24->toString());//url on creat Webhook
 		}
 		else
 		{
