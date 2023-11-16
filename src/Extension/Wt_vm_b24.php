@@ -22,7 +22,7 @@ use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Database\DatabaseAwareTrait;
 use Joomla\Event\SubscriberInterface;
-use Joomla\Plugin\System\Wt_vm_b24\Library\Crest;
+use Joomla\Plugin\System\Wt_vm_b24\Library\CRest;
 use Joomla\CMS\Router\Route;
 
 final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
@@ -395,7 +395,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 					]
 				]
 			];
-			$find_doublesBitrix24 = Crest::callBatch($find_doubles);
+			$find_doublesBitrix24 = CRest::callBatch($find_doubles);
 
 			if ($debug == 1)
 			{
@@ -812,7 +812,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 				]
 			];
 		}
-		$resultBitrix24 = Crest::callBatch($arData);
+		$resultBitrix24 = CRest::callBatch($arData);
 		if ($debug == 1)
 		{
 			$this->prepareDebugInfo("function addLead - prepared array to send to Bitrix 24(arData)", $arData);
@@ -860,7 +860,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 			]
 		];
 
-		$resultBitrix24 = Crest::callBatch($arData);
+		$resultBitrix24 = CRest::callBatch($arData);
 
 
 		if ($debug == 1)
@@ -952,7 +952,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 
 	private function addContact($contact, $debug)
 	{
-		$resultBitrix24 = Crest::call("crm.contact.add", $contact);
+		$resultBitrix24 = CRest::call("crm.contact.add", $contact);
 
 		if ($debug == 1)
 		{
@@ -985,7 +985,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 	private function updateContact($contact_id, $upd_info, $debug): bool
 	{
 
-		$req_crm_contact_fields = Crest::call(
+		$req_crm_contact_fields = CRest::call(
 			"crm.contact.update", [
 				'ID'     => $contact_id,
 				'fields' => $upd_info
@@ -1036,7 +1036,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 		{
 			$preset_id = 3;//Остальные страны: Организация - 1, Физическое лицо  - 3,
 		}
-		$resultRequisite = Crest::call(
+		$resultRequisite = CRest::call(
 			'crm.requisite.add',
 			[
 				'fields' => [
@@ -1049,7 +1049,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 			]
 		);
 
-		$resultAddress = Crest::call(
+		$resultAddress = CRest::call(
 			'crm.address.add',
 			[
 				'fields' => [

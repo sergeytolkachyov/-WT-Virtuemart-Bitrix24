@@ -16,7 +16,7 @@ use Joomla\CMS\Form\Field\ListField;
 use Joomla\CMS\Form\FormHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Plugin\PluginHelper;
-use Joomla\Plugin\System\Wt_vm_b24\Library\Crest;
+use Joomla\Plugin\System\Wt_vm_b24\Library\CRest;
 FormHelper::loadFieldClass('list');
 class B24ldealcategoryField extends ListField
 {
@@ -66,7 +66,7 @@ class B24ldealcategoryField extends ListField
 						'method' => 'crm.dealcategory.list'
 					]
 				];
-				$get_deal_categories = Crest::callBatch($get_deal_categories_params);
+				$get_deal_categories = CRest::callBatch($get_deal_categories_params);
 
 				if(isset($get_deal_categories["result"])){
 					$deal_categories = array($get_deal_categories["result"]["result"]["get_default_deal_category"]);

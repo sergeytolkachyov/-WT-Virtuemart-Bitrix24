@@ -16,7 +16,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Plugin\PluginHelper;
-use Joomla\Plugin\System\Wt_vm_b24\Library\Crest;
+use Joomla\Plugin\System\Wt_vm_b24\Library\CRest;
 use Joomla\CMS\Form\Field\ListField;
 
 FormHelper::loadFieldClass('list');
@@ -41,7 +41,7 @@ class B24ldealstageField extends ListField
 
 				if (!empty($deal_category))
 				{
-					$resultBitrix24 = Crest::call("crm.dealcategory.stage.list", ["id" => $deal_category]);
+					$resultBitrix24 = CRest::call("crm.dealcategory.stage.list", ["id" => $deal_category]);
 				}
 				else
 				{
@@ -53,7 +53,7 @@ class B24ldealstageField extends ListField
 							'SORT' => 'ASC'
 						]
 					];
-					$resultBitrix24 = Crest::call("crm.status.list", $b24_params);
+					$resultBitrix24 = CRest::call("crm.status.list", $b24_params);
 				}
 
 				$options = array();

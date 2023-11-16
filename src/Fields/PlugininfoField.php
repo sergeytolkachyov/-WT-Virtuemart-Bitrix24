@@ -66,7 +66,7 @@ class PlugininfoField extends NoteField
 
 			if (!empty($crm_host) && !empty($webhook_secret) && !empty($crm_assigned_id))
 			{
-				//include_once(JPATH_SITE . "/plugins/system/wt_vm_b24/lib/crest.php");
+				//include_once(JPATH_SITE . "/plugins/system/wt_vm_b24/lib/CRest.php");
 
 				$resultBitrix24 = CRest::call("profile", ["id" => $crm_assigned_id]);
 
