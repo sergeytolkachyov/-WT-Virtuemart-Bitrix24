@@ -182,10 +182,6 @@
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
-
-
-
-
                 <field type="radio"
                        name="product_weight"
                        label="PLG_WT_VM_B24_LEAD_VIRTUEMART_PRODUCT_WEIGHT"
