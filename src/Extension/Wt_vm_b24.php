@@ -121,7 +121,7 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 
 						$store_field .= $order->$value . ' ';
 					}
-					$store_field = $this->params->get('order_name_prefix') . $store_field;
+					$store_field = $this->params->get('order_name_prefix','') . $store_field;
 
 				}
 				elseif ($b24_field == 'EMAIL' || $b24_field == 'PHONE')
@@ -247,7 +247,12 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 				}
 				else
 				{
-					$qr["fields"][$b24_field] = $store_field;
+					if(isset($qr["fields"][$b24_field])){
+						$qr["fields"][$b24_field] .= ' '.$store_field;
+					} else {
+						$qr["fields"][$b24_field] = $store_field;
+					}
+
 				}
 
 
@@ -257,7 +262,11 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 			 */
 			else
 			{
-				$qr["fields"][$b24_field] = $store_field;
+				if(isset($qr["fields"][$b24_field])){
+					$qr["fields"][$b24_field] .= ' '.$store_field;
+				} else {
+					$qr["fields"][$b24_field] = $store_field;
+				}
 			}
 
 		}//END FOR
