@@ -60,7 +60,6 @@ final class Wt_vm_b24 extends CMSPlugin implements SubscriberInterface
 			$b24->setScheme('https');
 			$b24->setHost($crm_host);
 			$b24->setPath('/rest/' . $crm_assigned_id . '/' . $webhook_secret . '/');
-			echo $b24->toString();
 			define('C_REST_WEB_HOOK_URL', $b24->toString());//url on creat Webhook
 		}
 		else
